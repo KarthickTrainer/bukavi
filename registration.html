@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Student Registration | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Registration</span></div>
+<nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a><a class="btn primary" href="/contact.html">Get Guidance</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Student Registration Form</h1><p class="small">Automate: inputs, radio, checkbox, dropdown, date, validations.</p>
+<form id="regForm" novalidate>
+<div class="row"><div><label for="firstName">First Name</label><input id="firstName" name="first_name" placeholder="Karthick"/><div class="error" id="errFirst"></div></div>
+<div><label for="lastName">Last Name</label><input id="lastName" name="last_name" placeholder="Nagaraj"/><div class="error" id="errLast"></div></div></div>
+<div class="row"><div><label for="email">Email</label><input id="email" name="email" placeholder="name@example.com"/><div class="error" id="errEmail"></div></div>
+<div><label for="phone">Phone</label><input id="phone" name="phone" placeholder="10-digit number"/><div class="error" id="errPhone"></div></div></div>
+<label>Gender</label><div id="genderGroup">
+<label><input type="radio" id="genderMale" name="gender" value="Male"/> Male</label>
+<label style="margin-left:12px"><input type="radio" id="genderFemale" name="gender" value="Female"/> Female</label>
+<label style="margin-left:12px"><input type="radio" id="genderOther" name="gender" value="Other"/> Other</label></div><div class="error" id="errGender"></div>
+<label for="course">Course</label><select id="course" name="course"><option value="">-- Select --</option>
+<option value="Manual Testing">Manual Testing</option><option value="Automation (Selenium)">Automation (Selenium)</option><option value="Java + Selenium">Java + Selenium</option><option value="Python + Selenium">Python + Selenium</option></select><div class="error" id="errCourse"></div>
+<label>Skills (choose at least 1)</label><div id="skillsGroup">
+<label><input type="checkbox" id="skillBasic" name="skills" value="Basics"/> Basics</label>
+<label style="margin-left:12px"><input type="checkbox" id="skillSQL" name="skills" value="SQL"/> SQL</label>
+<label style="margin-left:12px"><input type="checkbox" id="skillSelenium" name="skills" value="Selenium"/> Selenium</label></div><div class="error" id="errSkills"></div>
+<div class="row"><div><label for="dob">Date of Birth</label><input id="dob" name="dob" type="date"/><div class="error" id="errDob"></div></div>
+<div><label for="experience">Experience</label><select id="experience" name="experience"><option value="">-- Select --</option>
+<option value="Fresher">Fresher</option><option value="0-1">0–1 year</option><option value="1-3">1–3 years</option><option value="3+">3+ years</option></select><div class="error" id="errExp"></div></div></div>
+<label for="about">Why you want IT (optional)</label><textarea id="about" name="about" rows="3" placeholder="Short answer..."></textarea>
+<hr/><div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn" id="resetBtn">Reset</button><button type="submit" class="btn primary" id="submitBtn">Submit</button><button type="button" class="btn" id="disabledBtn" disabled>Disabled Button</button></div>
+<p id="result" class="success" style="margin-top:12px"></p></form></div></main>
+<script>(function(){const f=$('#regForm'),r=$('#result');function c(){['errFirst','errLast','errEmail','errPhone','errGender','errCourse','errSkills','errDob','errExp'].forEach(i=>$('#'+i).textContent='');r.textContent='';r.className='success';}
+function e(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}function p(v){return /^\d{10}$/.test(v)}
+$('#resetBtn').addEventListener('click',()=>{f.reset();c();});
+f.addEventListener('submit',ev=>{ev.preventDefault();c();
+const first=$('#firstName').value.trim(),last=$('#lastName').value.trim(),email=$('#email').value.trim(),phone=$('#phone').value.trim();
+const gender=(document.querySelector('input[name="gender"]:checked')||{}).value||'';const course=$('#course').value;
+const skills=$all('input[name="skills"]:checked').map(x=>x.value);const dob=$('#dob').value;const exp=$('#experience').value;
+let ok=true;if(!first){$('#errFirst').textContent='First name is required';ok=false}if(!last){$('#errLast').textContent='Last name is required';ok=false}
+if(!email||!e(email)){$('#errEmail').textContent='Enter a valid email';ok=false}if(!phone||!p(phone)){$('#errPhone').textContent='Enter a valid 10-digit phone';ok=false}
+if(!gender){$('#errGender').textContent='Select gender';ok=false}if(!course){$('#errCourse').textContent='Select a course';ok=false}
+if(skills.length===0){$('#errSkills').textContent='Choose at least 1 skill';ok=false}if(!dob){$('#errDob').textContent='Choose date of birth';ok=false}
+if(!exp){$('#errExp').textContent='Select experience';ok=false}
+if(ok){r.textContent='✅ Registration submitted successfully!';r.setAttribute('data-status','success')}
+else{r.textContent='❌ Please fix errors and try again.';r.className='error';r.setAttribute('data-status','failed')}});})();</script></body></html>

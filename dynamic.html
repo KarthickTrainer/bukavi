@@ -1,0 +1,12 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Dynamic Waits | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script>
+<style>.loader{width:42px;height:42px;border-radius:50%;border:4px solid #d7e6f5;border-top-color:#0b6ed6;animation:spin 1s linear infinite;display:none}@keyframes spin{to{transform:rotate(360deg)}}.toast{background:#0b2239;color:#e6f4ff;padding:10px 12px;border-radius:14px;display:none;margin-top:10px}</style></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Dynamic</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Dynamic Waits</h1><p class="small">Practice explicit waits: loader, delayed button enable, toast.</p>
+<div class="row"><div><button class="btn" id="startLoad">Start Loader (3s)</button><div class="loader" id="loader" aria-label="loading"></div><p class="small" id="loadText" data-load="idle"></p></div>
+<div><button class="btn" id="delayedBtn" disabled>Delayed Enabled Button</button><p class="helper">Enables after 4 seconds.</p></div></div>
+<div class="toast" id="toast" data-toast="hidden">✅ Saved successfully!</div></div></main>
+<script>(function(){const l=$('#loader'),t=$('#loadText'),d=$('#delayedBtn'),to=$('#toast');
+$('#startLoad').addEventListener('click',()=>{l.style.display='inline-block';t.textContent='Loading...';t.setAttribute('data-load','loading');
+setTimeout(()=>{l.style.display='none';t.textContent='✅ Loader completed';t.setAttribute('data-load','done');to.style.display='block';to.setAttribute('data-toast','shown');setTimeout(()=>{to.style.display='none';to.setAttribute('data-toast','hidden')},2000)},3000);});
+setTimeout(()=>{d.disabled=false;d.classList.add('primary');d.textContent='Enabled! Click me';d.setAttribute('data-enabled','true')},4000);
+d.addEventListener('click',()=>{to.style.display='block';to.setAttribute('data-toast','clicked');setTimeout(()=>to.style.display='none',1500);});})();</script></body></html>

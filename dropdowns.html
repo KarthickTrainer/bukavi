@@ -1,0 +1,16 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Dropdowns | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Dropdowns</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Dropdowns</h1><p class="small">Practice Select, multi-select, and searchable dropdown.</p>
+<label for="country">Country</label><select id="country" name="country"><option value="">-- Select --</option><option value="IN">India</option><option value="US">USA</option><option value="UK">UK</option><option value="SG">Singapore</option></select>
+<p class="small" id="countryResult" data-country="none"></p>
+<label for="skills">Skills (multi)</label><select id="skills" name="skills" multiple size="5"><option value="java">Java</option><option value="python">Python</option><option value="selenium">Selenium</option><option value="pytest">PyTest</option><option value="testng">TestNG</option></select>
+<p class="small" id="skillsResult" data-skills="none"></p><hr/>
+<label for="searchBox">Searchable dropdown (simulated)</label><input id="searchBox" placeholder="Type 'sel' or 'pyt'..."/>
+<div class="card" style="margin-top:10px" id="searchList">
+<div class="small item" data-option="Selenium WebDriver">Selenium WebDriver</div><div class="small item" data-option="Selenium Grid">Selenium Grid</div><div class="small item" data-option="PyTest Framework">PyTest Framework</div><div class="small item" data-option="Python Basics">Python Basics</div><div class="small item" data-option="TestNG Framework">TestNG Framework</div></div>
+<p class="small" id="searchResult" data-search="none"></p></div></main>
+<script>(function(){$('#country').addEventListener('change',e=>{$('#countryResult').textContent='Selected: '+(e.target.options[e.target.selectedIndex].text||'');$('#countryResult').setAttribute('data-country',e.target.value||'none');});
+$('#skills').addEventListener('change',e=>{const v=Array.from(e.target.selectedOptions).map(o=>o.value);$('#skillsResult').textContent='Selected: '+v.join(', ');$('#skillsResult').setAttribute('data-skills',v.join('|')||'none');});
+function f(q){q=q.toLowerCase();$all('#searchList .item').forEach(el=>{const t=el.getAttribute('data-option').toLowerCase();el.style.display=t.includes(q)?'block':'none';});}
+$('#searchBox').addEventListener('input',e=>f(e.target.value));
+$all('#searchList .item').forEach(el=>el.addEventListener('click',()=>{const v=el.getAttribute('data-option');$('#searchResult').textContent='Chosen: '+v;$('#searchResult').setAttribute('data-search',v);}));})();</script></body></html>

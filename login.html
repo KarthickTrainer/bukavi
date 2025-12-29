@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Login | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Login</span></div>
+<nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Login Page</h1><p class="small">Automate: valid/invalid, show/hide password, locked user.</p>
+<form id="loginForm" novalidate>
+<label for="username">Username</label><input id="username" name="username" placeholder="demo"/><div class="error" id="uErr"></div>
+<label for="password">Password</label><input id="password" name="password" type="password" placeholder="secret123"/>
+<div class="helper"><label style="font-weight:700"><input id="showPwd" type="checkbox"/> Show password</label>
+<label style="font-weight:700;margin-left:12px"><input id="rememberMe" type="checkbox"/> Remember me</label></div><div class="error" id="pErr"></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button type="submit" class="btn primary" id="loginBtn">Login</button><button type="button" class="btn" id="clearBtn">Clear</button></div>
+<p id="loginMsg" class="success" style="margin-top:12px"></p><hr/>
+<div class="small"><b>Valid:</b> demo / secret123 &nbsp; | &nbsp; <b>Locked user:</b> locked</div></form></div></main>
+<script>(function(){const v={u:'demo',p:'secret123'},f=$('#loginForm'),m=$('#loginMsg');
+$('#showPwd').addEventListener('change',e=>$('#password').type=e.target.checked?'text':'password');
+$('#clearBtn').addEventListener('click',()=>{f.reset();$('#uErr').textContent='';$('#pErr').textContent='';m.textContent='';m.className='success';});
+f.addEventListener('submit',e=>{e.preventDefault();$('#uErr').textContent='';$('#pErr').textContent='';m.textContent='';m.className='error';
+const u=$('#username').value.trim(),p=$('#password').value;let ok=true;if(!u){$('#uErr').textContent='Username required';ok=false}if(!p){$('#pErr').textContent='Password required';ok=false}
+if(!ok)return;if(u==='locked'){m.textContent='❌ User is locked.';m.setAttribute('data-login','locked');return}
+if(u===v.u&&p===v.p){m.className='success';m.textContent='✅ Login successful!';m.setAttribute('data-login','success')}
+else{m.textContent='❌ Invalid username or password.';m.setAttribute('data-login','failed')}});})();</script></body></html>

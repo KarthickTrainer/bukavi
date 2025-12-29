@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Elements | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script>
+<style>.box{padding:14px;border:1px dashed var(--border);border-radius:14px;background:#fff}.hoverTarget{display:inline-block;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:#eef6ff;font-weight:800}
+.tooltip{display:none;margin-top:10px}.hoverWrap:hover .tooltip{display:block}.toast{position:fixed;right:18px;bottom:18px;background:#0b2239;color:#e6f4ff;padding:12px 14px;border-radius:14px;display:none}</style></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Elements</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Elements Playground</h1><p class="small">Automate clicks, text changes, hover, dynamic content.</p>
+<div class="row"><div class="box"><div class="badge">Buttons</div><button class="btn primary" id="btnPrimary">Primary</button><button class="btn" id="btnSecondary">Secondary</button><button class="btn" id="btnDisabled" disabled>Disabled</button><p id="btnResult" class="small" data-result="none"></p></div>
+<div class="box hoverWrap"><div class="badge">Hover</div><div class="hoverTarget" id="hoverMe">Hover on me</div><div class="tooltip small" id="tooltipText">✅ Tooltip visible!</div></div></div>
+<hr/><div class="box"><div class="badge">Links</div><a href="#" id="linkOne">Link One</a> · <a href="#" id="linkTwo">Link Two</a><p id="linkResult" class="small" data-link="none"></p></div>
+<hr/><div class="box"><div class="badge">Dynamic Text</div><button class="btn" id="dynamicBtn">Update Text</button><p id="dynamicText" class="small" data-dynamic="idle">Waiting...</p></div></div></main>
+<div class="toast" id="toast">Saved!</div>
+<script>(function(){$('#btnPrimary').addEventListener('click',()=>{$('#btnResult').textContent='Primary clicked';$('#btnResult').setAttribute('data-result','primary');$('#toast').style.display='block';setTimeout(()=>$('#toast').style.display='none',900);});
+$('#btnSecondary').addEventListener('click',()=>{$('#btnResult').textContent='Secondary clicked';$('#btnResult').setAttribute('data-result','secondary');});
+$('#linkOne').addEventListener('click',e=>{e.preventDefault();$('#linkResult').textContent='Link One clicked';$('#linkResult').setAttribute('data-link','one');});
+$('#linkTwo').addEventListener('click',e=>{e.preventDefault();$('#linkResult').textContent='Link Two clicked';$('#linkResult').setAttribute('data-link','two');});
+$('#dynamicBtn').addEventListener('click',()=>{$('#dynamicText').textContent='Updating...';$('#dynamicText').setAttribute('data-dynamic','loading');setTimeout(()=>{$('#dynamicText').textContent='✅ Updated after delay';$('#dynamicText').setAttribute('data-dynamic','done');},2000);});})();</script></body></html>

@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Alerts | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script>
+<style>.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center}.modal{background:#fff;border-radius:18px;padding:18px;border:1px solid var(--border);max-width:420px;width:92%}</style></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Alerts</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Alerts & Modals</h1><p class="small">Automate alert(), confirm(), prompt(), plus a custom modal.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="btnAlert">JS Alert</button><button class="btn" id="btnConfirm">JS Confirm</button><button class="btn" id="btnPrompt">JS Prompt</button><button class="btn primary" id="btnModal">Open Modal</button></div>
+<p class="small" id="alertResult" data-alert="none" style="margin-top:12px"></p></div></main>
+<div class="modal-back" id="modalBack"><div class="modal"><h3 style="margin:0 0 8px">Custom Modal</h3><p class="small">Locate modal elements and click buttons.</p>
+<div style="display:flex;gap:10px;justify-content:flex-end"><button class="btn" id="modalCancel">Cancel</button><button class="btn primary" id="modalOk">OK</button></div></div></div>
+<script>(function(){const o=$('#alertResult');$('#btnAlert').addEventListener('click',()=>{alert('Hello! This is a JavaScript alert.');o.textContent='Alert handled';o.setAttribute('data-alert','alert');});
+$('#btnConfirm').addEventListener('click',()=>{const r=confirm('Do you want to continue?');o.textContent=r?'Confirm: OK':'Confirm: Cancel';o.setAttribute('data-alert',r?'confirm_ok':'confirm_cancel');});
+$('#btnPrompt').addEventListener('click',()=>{const r=prompt('Enter your name:','');o.textContent='Prompt value: '+(r===null?'null':r);o.setAttribute('data-alert','prompt');});
+const b=$('#modalBack');$('#btnModal').addEventListener('click',()=>b.style.display='flex');
+$('#modalCancel').addEventListener('click',()=>{b.style.display='none';o.textContent='Modal cancelled';o.setAttribute('data-alert','modal_cancel');});
+$('#modalOk').addEventListener('click',()=>{b.style.display='none';o.textContent='Modal OK clicked';o.setAttribute('data-alert','modal_ok');});})();</script></body></html>

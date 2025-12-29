@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>File Upload | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Upload</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">File Upload</h1><p class="small">Send a file path to input. Validate filename.</p>
+<label for="fileInput">Choose a file</label><input id="fileInput" name="file" type="file"/><p class="small" id="fileName" data-file="none"></p>
+<button class="btn primary" id="uploadBtn" disabled>Upload</button><p class="small" id="uploadMsg" data-upload="none"></p></div></main>
+<script>(function(){const i=$('#fileInput'),n=$('#fileName'),b=$('#uploadBtn'),m=$('#uploadMsg');
+i.addEventListener('change',()=>{const f=i.files&&i.files[0];if(!f){n.textContent='';n.setAttribute('data-file','none');b.disabled=true;return;}
+n.textContent='Selected: '+f.name;n.setAttribute('data-file',f.name);b.disabled=false;});
+b.addEventListener('click',()=>{m.textContent='✅ Uploaded (simulated)';m.setAttribute('data-upload','success');});})();</script></body></html>

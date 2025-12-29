@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Web Table | BuKavi</title><link rel="stylesheet" href="/assets/style.css"/><script src="/assets/site.js"></script></head><body>
+<header class="nav"><div class="brand"><div class="logo">B</div><div>BuKavi</div><span class="badge">Table</span></div><nav class="navlinks"><a class="btn" href="/practice/">Practice Home</a><a class="btn" href="/">Home</a></nav></header>
+<main class="container"><div class="card"><h1 class="section-title">Web Table (Sort + Filter)</h1><p class="small">Practice locating cells, sorting, and filtering rows.</p>
+<label for="filterBox">Filter by Name</label><input id="filterBox" placeholder="Type e.g., 'an' or 'ra'..."/>
+<div class="helper">Click headers to sort. Assert row count and values.</div><hr/>
+<table id="empTable"><thead><tr><th id="thId" data-col="id">ID</th><th id="thName" data-col="name">Name</th><th id="thRole" data-col="role">Role</th><th id="thCity" data-col="city">City</th></tr></thead>
+<tbody>
+<tr data-row="1"><td class="c-id">101</td><td class="c-name">Anil</td><td class="c-role">QA</td><td class="c-city">Chennai</td></tr>
+<tr data-row="2"><td class="c-id">102</td><td class="c-name">Riya</td><td class="c-role">SDET</td><td class="c-city">Coimbatore</td></tr>
+<tr data-row="3"><td class="c-id">103</td><td class="c-name">Karthick</td><td class="c-role">QA</td><td class="c-city">Bengaluru</td></tr>
+<tr data-row="4"><td class="c-id">104</td><td class="c-name">Arun</td><td class="c-role">Manual</td><td class="c-city">Hyderabad</td></tr>
+<tr data-row="5"><td class="c-id">105</td><td class="c-name">Nisha</td><td class="c-role">QA</td><td class="c-city">Pune</td></tr>
+</tbody></table>
+<p class="small" id="tableMeta" data-visible="5" style="margin-top:10px"></p></div></main>
+<script>(function(){const m=$('#tableMeta');let asc=true;function u(){const v=$all('#empTable tbody tr').filter(r=>r.style.display!=='none').length;m.textContent='Visible rows: '+v;m.setAttribute('data-visible',String(v));}
+$('#filterBox').addEventListener('input',e=>{const q=e.target.value.toLowerCase();$all('#empTable tbody tr').forEach(tr=>{const n=tr.querySelector('.c-name').textContent.toLowerCase();tr.style.display=n.includes(q)?'':'none';});u();});
+$all('#empTable thead th').forEach(th=>th.addEventListener('click',()=>{const col=th.getAttribute('data-col');const rows=$all('#empTable tbody tr');
+rows.sort((a,b)=>{const av=a.querySelector('.c-'+col)?.textContent||'';const bv=b.querySelector('.c-'+col)?.textContent||'';if(col==='id')return asc?Number(av)-Number(bv):Number(bv)-Number(av);return asc?av.localeCompare(bv):bv.localeCompare(av);});
+asc=!asc;const tb=$('#empTable tbody');rows.forEach(r=>tb.appendChild(r));u();}));u();})();</script></body></html>
